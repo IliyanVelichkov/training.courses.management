@@ -1,0 +1,16 @@
+{
+	"items" : [{
+			"key" : "wi_courses",
+			"shortViewName" : "Courses",
+			"requiredRole" : "Everyone"
+		}, {
+			"key" : "wi_favorites",
+			"shortViewName" : "Favorites",
+			"requiredRole" : "Everyone"
+		}, {
+			"key" : "wi_administration",
+			"shortViewName" : "Administration",
+			"requiredRole" : "Administrator"
+		}
+	]
+}

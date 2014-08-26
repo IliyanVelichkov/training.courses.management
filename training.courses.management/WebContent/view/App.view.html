@@ -1,0 +1,11 @@
+<template data-controller-name="training.courses.management.view.App">
+<div id="shellId" data-sap-ui-type="sap.ui.ux3.Shell" data-app-title="Cockpit" data-app-icon="img/warning.png" data-show-search-tool="false"
+	data-show-feeder-tool="false" data-workset-item-selected="selectItem" data-workset-items="{nav>/items}" data-logout="onLogutPressed">
+	<div data-sap-ui-aggregation="worksetItems">
+		<div data-sap-ui-type="sap.ui.ux3.NavigationItem" data-text="{path: 'nav>key', formatter: '.localize'}" data-key="{nav>key}"></div>
+	</div>
+	<div data-sap-ui-aggregation="headerItems">
+		<div data-sap-ui-type="sap.ui.commons.TextView" data-text="Logged in user"></div>
+	</div>
+</div>
+</template>

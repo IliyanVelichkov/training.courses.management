@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF-8">
+
+<title>Training Courses Management System</title>
+
+<script src="resources/sap-ui-core.js" type="text/javascript"
+	id="sap-ui-bootstrap" data-sap-ui-libs="sap.m,sap.ui.commons,sap.ui.ux3,sap.ui.table"
+	data-sap-ui-theme="sap_bluecrystal"
+	data-sap-ui-xx-bindingSyntax="complex"
+	data-sap-ui-resourceroots='{"training.courses.management": "./"}'>
+</script>
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<script>
+	sap.ui.getCore().attachInit(function() {
+		jQuery.sap.registerModulePath("training.courses.management", "/");
+		
+		jQuery.sap.require("training.courses.management.util.Helper");
+
+		var rootView = sap.ui.htmlview("app", "training.courses.management.view.App");
+		rootView.placeAt("content");
+	});
+</script>
+</head>
+
+<body class="sapUiBody" id="content" />
+
+</html>
