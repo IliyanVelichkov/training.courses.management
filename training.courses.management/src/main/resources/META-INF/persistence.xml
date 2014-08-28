@@ -4,6 +4,8 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>training.courses.management.system.persistence.model.Context</class>
 		<class>training.courses.management.system.persistence.model.Keyword</class>
+		<class>training.courses.management.system.persistence.model.CoursesProvider</class>
+		<class>training.courses.management.system.persistence.model.SearchResultParserCfg</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="eclipselink.weaving" value="false" />

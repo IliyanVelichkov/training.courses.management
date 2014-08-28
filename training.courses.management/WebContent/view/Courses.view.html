@@ -1,5 +1,44 @@
 <template data-controller-name="training.courses.management.view.Courses">
 
-	<div data-sap-ui-type="sap.ui.commons.Label" data-text="Comming soon!"></div>
+	<div data-sap-ui-type="sap.ui.table.Table" id="coursesTable" data-selection-mode="Single" data-rows="{courses>/}" data-editable="false"
+		data-row-selection-change="onRowChange" data-visible-row-count="20" data-title="Courses {path:'courses>/', formatter:'.formatCount'}">
+		<div data-sap-ui-aggregation="columns">
+			<div data-sap-ui-type="sap.ui.table.Column" data-sort-property="shortName" data-filter-property="shortName">
+				<div data-sap-ui-aggregation="label">
+					<div data-sap-ui-type="sap.ui.commons.Label" data-text="Short name"></div>
+				</div>
+				<div data-sap-ui-aggregation="template">
+					<div data-sap-ui-type="sap.ui.commons.TextField" data-value="{courses>shortName}" data-editable="false"></div>
+				</div>
+			</div>
+			<div data-sap-ui-type="sap.ui.table.Column" data-sort-property="name" data-filter-property="name">
+				<div data-sap-ui-aggregation="label">
+					<div data-sap-ui-type="sap.ui.commons.Label" data-text="Name"></div>
+				</div>
+				<div data-sap-ui-aggregation="template">
+					<div data-sap-ui-type="sap.ui.commons.TextField" data-value="{courses>name}" data-editable="false"></div>
+				</div>
+			</div>
+			<div data-sap-ui-type="sap.ui.table.Column" data-sort-property="url" data-filter-property="url">
+				<div data-sap-ui-aggregation="label">
+					<div data-sap-ui-type="sap.ui.commons.Label" data-text="URL"></div>
+				</div>
+				<div data-sap-ui-aggregation="template">
+					<div data-sap-ui-type="sap.ui.commons.TextField" data-value="{courses>url}" data-editable="false"></div>
+				</div>
+			</div>
+			<div data-sap-ui-type="sap.ui.table.Column" data-sort-property="description" data-filter-property="description">
+				<div data-sap-ui-aggregation="label">
+					<div data-sap-ui-type="sap.ui.commons.Label" data-text="Description"></div>
+				</div>
+				<div data-sap-ui-aggregation="template">
+					<div data-sap-ui-type="sap.ui.commons.TextField" data-value="{courses>description}" data-editable="false"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div data-sap-ui-type="sap.ui.layout.HorizontalLayout" class="buttonContainer">
+	<div data-sap-ui-type="sap.ui.commons.Button" data-text="Show" data-press="onShowCourse" class="courseButton" data-enabled="false" id="courseOpen" data-icon="sap-icon://show"></div>
+</div>
 
 </template>

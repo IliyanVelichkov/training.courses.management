@@ -8,6 +8,7 @@ import javax.ws.rs.core.Application;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
 import training.courses.management.system.service.ContextService;
+import training.courses.management.system.service.CourseProviderService;
 import training.courses.management.system.service.LMSService;
 import training.courses.management.system.service.UserService;
 
@@ -19,6 +20,7 @@ public class RestConfig extends Application {
 		singletons.add(new ContextService());
 		singletons.add(new UserService());
 		singletons.add(new LMSService());
+		singletons.add(new CourseProviderService());
 	}
 
 	@Override
