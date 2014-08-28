@@ -9,6 +9,8 @@
 	<name>training.courses.management</name>
 
 	<properties>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<sap.cloud.jdk.version>1.7</sap.cloud.jdk.version>
 		<sap.cloud.sdk.version>1.58.18.1</sap.cloud.sdk.version>
 		<apache.cxf.version>2.7.0</apache.cxf.version>
@@ -109,7 +111,6 @@
 
 	<build>
 		<plugins>
-			<!-- Map the Eclipse file system layout to the Maven plug-ins -->
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version><!--$NO-MVN-MAN-VER$ -->
@@ -122,8 +123,6 @@
 				</configuration>
 			</plugin>
 
-			<!-- Set compiler to officially supported JDK version for the given SAP 
-				HANA Cloud SDK -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.5.1</version>
@@ -135,20 +134,17 @@
 				</configuration>
 			</plugin>
 
-			<!-- Include only unit tests for maven-surefire-plugin that is run in 
-				test phase -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.14.1</version>
+				<version>2.17</version>
 				<configuration>
 					<includes>
-						<include>**/test/**/*Test.java</include>
+						<include>**/*Test.java</include>
 					</includes>
+					<skipTests>false</skipTests>
 				</configuration>
 			</plugin>
 
-			<!-- Enforce officially supported JDK and validated Maven version for 
-				the given SAP HANA Cloud SDK or higher -->
 			<plugin>
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<version>1.0.1</version>
