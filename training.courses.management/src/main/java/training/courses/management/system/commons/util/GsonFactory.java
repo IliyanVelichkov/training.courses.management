@@ -1,4 +1,4 @@
-package training.courses.management.system.api.util;
+package training.courses.management.system.commons.util;
 
 import java.util.Date;
 

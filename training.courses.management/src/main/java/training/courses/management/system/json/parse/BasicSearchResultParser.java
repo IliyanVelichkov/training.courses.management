@@ -1,4 +1,4 @@
-package training.courses.management.system.api.commons.json.parse;
+package training.courses.management.system.json.parse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public abstract class BasicSearchResultParser implements SearchResultParser {
 				throw new SearchResultParseException(String.format("Missing url field [%s] in course [%s] for pattern ", placeholderField, //$NON-NLS-1$
 						courseJsonObject.toString()));
 			}
-			String value = courseJsonObject.getString(placeholderField);
+			String value = courseJsonObject.optString(placeholderField, "");
 			url = url.replace(String.format("{%s}", placeholderField), value); //$NON-NLS-1$
 
 		}
@@ -49,15 +49,12 @@ public abstract class BasicSearchResultParser implements SearchResultParser {
 		List<String> placeholders = new ArrayList<>();
 		Pattern pattern = Pattern.compile(URL_PATTERN);
 		Matcher matcher = pattern.matcher(urlPattern);
-		// if (!matcher.find()) {
-		//			throw new IllegalArgumentException("Invalid URL pattern " + urlPattern); //$NON-NLS-1$
-		// }
 
 		while (matcher.find()) {
 			placeholders.add(matcher.group(1));
 		}
 		if (placeholders.size() == 0) {
-			throw new SearchResultParseException("Missing url field placeholder for pattern " + urlPattern);
+			throw new SearchResultParseException("Missing url field placeholder for pattern " + urlPattern); //$NON-NLS-1$
 		}
 		return placeholders;
 	}

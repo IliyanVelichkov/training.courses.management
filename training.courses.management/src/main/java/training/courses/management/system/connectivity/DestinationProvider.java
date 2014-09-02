@@ -2,7 +2,7 @@ package training.courses.management.system.connectivity;
 
 import javax.naming.NamingException;
 
-import training.courses.management.system.api.commons.util.JndiUtil;
+import training.courses.management.system.commons.util.JndiUtil;
 
 import com.sap.core.connectivity.api.DestinationException;
 import com.sap.core.connectivity.api.DestinationFactory;

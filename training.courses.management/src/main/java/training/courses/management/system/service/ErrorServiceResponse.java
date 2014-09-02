@@ -2,17 +2,25 @@ package training.courses.management.system.service;
 
 public class ErrorServiceResponse {
 
-	private String message;
+	private Object message;
 
-	public ErrorServiceResponse(String message) {
+	public ErrorServiceResponse(Object message) {
 		this.message = message;
 	}
 
-	public String getMessage() {
+	public Object getMessage() {
 		return message;
 	}
 
-	public void setMessage(String message) {
+	public void setMessage(Object message) {
 		this.message = message;
+	}
+
+	@SuppressWarnings("nls")
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ErrorServiceResponse [message=").append(message).append("]");
+		return builder.toString();
 	}
 }

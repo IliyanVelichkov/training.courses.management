@@ -1,4 +1,4 @@
-package training.courses.management.system.api.commons.json.parse;
+package training.courses.management.system.json.parse;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,6 +7,8 @@ import java.util.List;
 import org.junit.Test;
 
 import training.courses.management.system.beans.Course;
+import training.courses.management.system.json.parse.ArraySearchResultParser;
+import training.courses.management.system.json.parse.SearchResultParseException;
 import training.courses.management.system.persistence.model.ResultFieldType;
 import training.courses.management.system.persistence.model.SearchResultParserCfg;
 

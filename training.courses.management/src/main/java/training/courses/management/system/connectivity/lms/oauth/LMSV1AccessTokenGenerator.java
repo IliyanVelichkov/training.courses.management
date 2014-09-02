@@ -17,7 +17,7 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import training.courses.management.system.api.util.GsonFactory;
+import training.courses.management.system.commons.util.GsonFactory;
 import training.courses.management.system.connectivity.lms.oauth.beans.AccessTokenRequest;
 import training.courses.management.system.connectivity.lms.oauth.beans.AccessTokenResponse;
 import training.courses.management.system.connectivity.lms.oauth.beans.LMSOAuthCredentials;

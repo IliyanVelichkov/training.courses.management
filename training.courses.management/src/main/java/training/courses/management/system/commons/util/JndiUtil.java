@@ -1,4 +1,4 @@
-package training.courses.management.system.api.commons.util;
+package training.courses.management.system.commons.util;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

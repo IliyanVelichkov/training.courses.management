@@ -1,4 +1,4 @@
-package training.courses.management.system.api.commons.json.parse;
+package training.courses.management.system.json.parse;
 
 import java.util.List;
 

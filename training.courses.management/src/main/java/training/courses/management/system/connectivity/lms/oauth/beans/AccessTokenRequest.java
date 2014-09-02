@@ -1,6 +1,6 @@
 package training.courses.management.system.connectivity.lms.oauth.beans;
 
-import training.courses.management.system.api.util.GsonFactory;
+import training.courses.management.system.commons.util.GsonFactory;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -23,8 +23,9 @@ public abstract class BaseService {
 		return Response.ok(body).build();
 	}
 
-	protected Response buildBadRequestResponse(String message) {
-		getLogger().debug(message);
-		return Response.status(Status.BAD_REQUEST).entity(new ErrorServiceResponse(message)).build();
+	protected Response buildBadRequestResponse(Object object) {
+		ErrorServiceResponse err = new ErrorServiceResponse(object);
+		getLogger().debug(err.toString());
+		return Response.status(Status.BAD_REQUEST).entity(err).build();
 	}
 }

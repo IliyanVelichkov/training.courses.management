@@ -1,6 +1,6 @@
 package training.courses.management.system.connectivity.lms.client;
 
-import training.courses.management.system.api.util.GsonFactory;
+import training.courses.management.system.commons.util.GsonFactory;
 import training.courses.management.system.connectivity.Connector;
 import training.courses.management.system.connectivity.ConnectorFactory;
 import training.courses.management.system.connectivity.beans.ServiceHttpResponse;
