@@ -1,0 +1,12 @@
+{
+    "name": null,
+    "url": null,
+    "searchApiUrlPattern": null,
+    "searchResultParserCfg": {
+        "resultFieldType": null,
+        "resultPath": null,
+        "urlPattern": null,
+        "titleField": null,
+        "descriptionField": null
+    }
+}

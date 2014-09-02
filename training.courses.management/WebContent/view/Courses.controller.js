@@ -6,6 +6,10 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Courses", {
 
 	},
 
+	onAfterRendering : function() {
+
+	},
+
 	onRowChange : function(evnt) {
 
 	},

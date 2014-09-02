@@ -1,0 +1,112 @@
+<template data-controller-name="training.courses.management.view.CourseProviders">
+	<div data-sap-ui-type="sap.ui.commons.Panel" data-show-collapse-icon="false" data-area-design="Plain">
+		<div data-sap-ui-aggregation="title">
+			<div data-sap-ui-type="sap.ui.core.Title" data-text="{i18n>courseProvidersAdminTitle}" data-level="H2" data-emphasized="true"></div>
+		</div>
+		<div data-sap-ui-aggregation="content">
+			<div data-sap-ui-type="sap.ui.layout.form.SimpleForm">
+				<div data-sap-ui-type="sap.ui.core.Title" data-text="{i18n>configTitle}"></div>
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text="Name" data-tooltip="{i18n>courseProviderNameTooltip}"></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.ComboBox" id="courseProviderNameCombo" data-value="{courseProvider>/name}" data-width="35em" data-tooltip="{i18n>courseProviderNameComboTooltip}" data-enabled="true" data-items="{courseProviders>/}"
+						 data-change="onCourseProviderSelect">
+						<div data-sap-ui-aggregation="items">
+								<div data-sap-ui-type="sap.ui.core.ListItem" data-key="{courseProviders>name}" data-text="{courseProviders>name}"></div>
+						</div>
+						<div data-sap-ui-aggregation="layoutData"></div>
+					</div>
+					<div data-sap-ui-type="sap.ui.commons.Image" id="providerWarningImage" class="imgMargin" data-src="img/warning.png"
+						data-visible="{path: 'courseProvider>/name', formatter:'.showWarning'}">
+						<div data-sap-ui-aggregation="tooltip">
+							<div data-sap-ui-type="sap.ui.commons.RichTooltip" data-title="{i18n>invalidCourseProvider}" data-text="{i18n>invalidCourseProviderMsg}"></div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>urlLabel}" data-tooltip="{i18n>urlLabel}"></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.TextField" id="providerUrlTextField" data-value="{courseProvider>/url}" data-width="35em" data-tooltip="{i18n>providerUrlTooltip}" data-live-change="onLiveChangeDetermineSaveBtnState"></div>
+					<div data-sap-ui-type="sap.ui.commons.Image" id="keywordsWarningImage" class="imgMargin" data-src="img/warning.png"
+						data-visible="{path: 'courseProvider>/url', formatter:'.showWarning'}">
+						<div data-sap-ui-aggregation="tooltip">
+							<div data-sap-ui-type="sap.ui.commons.RichTooltip" data-title="{i18n>invalidProviderURL}" data-text="{i18n>invalidProviderURLMsg}"></div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>searchApiUrlPatternLbl}" data-tooltip="{i18n>searchApiUrlPatternLbl}"></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.TextField" id="searchApiUrlPatternTextField" data-value="{courseProvider>/searchApiUrlPattern}" data-width="35em" data-tooltip="{i18n>searchApiUrlPatternTextFieldTooltip}"></div>
+					<div data-sap-ui-type="sap.ui.commons.Image" id="searchApiWarningImage" class="imgMargin" data-src="img/warning.png"
+						data-visible="{path: 'courseProvider>/searchApiUrlPattern', formatter:'.showWarning'}">
+						<div data-sap-ui-aggregation="tooltip">
+							<div data-sap-ui-type="sap.ui.commons.RichTooltip" data-title="{i18n>invalidSearchApiUrlPattern}" data-text="{i18n>invalidSearchApiUrlPatternMsg}"></div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>resultFieldTypeLbl}" data-tooltip="{i18n>resultFieldTypeLbl}"></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.SegmentedButton" id="resultFieldTypeSegmButtons" data-width="35em" data-tooltip="{i18n>resultFieldTypeTooltip}">
+						<div data-sap-ui-aggregation="buttons">
+							<div id="arrayResultTypeBtn" data-press="onArrayResultTypeBtnPress" data-sap-ui-type="sap.ui.commons.Button" data-text="Array" data-icon="sap-icon://list"></div>
+							<div id="objectResultTypeBtn" data-press="onObjectResultTypeBtnPress" data-sap-ui-type="sap.ui.commons.Button" data-text="Object" data-icon="sap-icon://product"></div>
+						</div>
+					</div>
+					<div data-sap-ui-type="sap.ui.commons.Image" id="resultFieldTypeWarningImage" class="imgMargin" data-src="img/warning.png"
+						data-visible="{path: 'courseProvider>/searchResultParserCfg/resultFieldType', formatter:'.showWarning'}">
+						<div data-sap-ui-aggregation="tooltip">
+							<div data-sap-ui-type="sap.ui.commons.RichTooltip" data-title="{i18n>invalidResultFieldType}" data-text="{i18n>invalidResultFieldTypeMsg}"></div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>resultPathLbl}" data-tooltip="{i18n>resultPathLbl}"></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.TextField" id="resultPathTextField" data-width="35em" data-value="{courseProvider>/searchResultParserCfg/resultPath}" data-tooltip="{i18n>resultPathTextFieldTooltip}"></div>
+					<div data-sap-ui-type="sap.ui.commons.Image" id="resultPathWarningImage" class="imgMargin" data-src="img/warning.png"
+						data-visible="{path: 'courseProvider>/searchResultParserCfg/resultPath', formatter:'.showWarning'}">
+						<div data-sap-ui-aggregation="tooltip">
+							<div data-sap-ui-type="sap.ui.commons.RichTooltip" data-title="{i18n>invalidResultPath}" data-text="{i18n>invalidResultPathMsg}"></div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>courseTitleFieldLbl}" data-tooltip="{i18n>courseTitleFieldLbl}"></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.TextField" id="courseTitleFieldTextField" data-value="{courseProvider>/searchResultParserCfg/titleField}" data-width="35em" data-tooltip="{i18n>courseTitleFieldTextFieldTooltip}"></div>
+					<div data-sap-ui-type="sap.ui.commons.Image" id="courseTitleFieldWarningImage" class="imgMargin" data-src="img/warning.png"
+						data-visible="{path: 'courseProvider>/searchResultParserCfg/titleField', formatter:'.showWarning'}">
+						<div data-sap-ui-aggregation="tooltip">
+							<div data-sap-ui-type="sap.ui.commons.RichTooltip" data-title="{i18n>invalidCourseTitleField}" data-text="{i18n>invalidCourseTitleFieldMsg}"></div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>courseDescriptionFieldLbl}" data-tooltip="{i18n>courseDescriptionFieldLbl}"></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.TextField" id="courseDescriptionFieldTextField" data-value="{courseProvider>/searchResultParserCfg/descriptionField}" data-width="35em" data-tooltip="{i18n>courseDescriptionFieldTextFieldTooltip}"></div>
+					<div data-sap-ui-type="sap.ui.commons.Image" id="courseDescriptionFieldWarningImage" class="imgMargin" data-src="img/warning.png"
+						data-visible="{path: 'courseProvider>/searchResultParserCfg/descriptionField', formatter:'.showWarning'}">
+						<div data-sap-ui-aggregation="tooltip">
+							<div data-sap-ui-type="sap.ui.commons.RichTooltip" data-title="{i18n>invalidCourseDescriptionField}" data-text="{i18n>invalidCourseDescriptionFieldMsg}"></div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>courseUrlPatternLbl}" data-tooltip="{i18n>courseUrlPatternLbl}"></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.TextField" id="courseUrlPatternTextField" data-value="{courseProvider>/searchResultParserCfg/urlPattern}" data-width="35em" data-tooltip="{i18n>courseUrlPatternTextFieldTooltip}"></div>
+					<div data-sap-ui-type="sap.ui.commons.Image" id="courseUrlPatternWarningImage" class="imgMargin" data-src="img/warning.png"
+						data-visible="{path: 'courseProvider>/searchResultParserCfg/urlPattern', formatter:'.showWarning'}">
+						<div data-sap-ui-aggregation="tooltip">
+							<div data-sap-ui-type="sap.ui.commons.RichTooltip" data-title="{i18n>invalidCourseUrlPattern}" data-text="{i18n>invalidCourseUrlPatternMsg}"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text=""></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.Button" data-width="85%" data-press="onSaveCourseProvider" data-text="Save" id="saveProviderBtn" data-visible="true" data-icon="sap-icon://save"
+						data-enabled="{parts:[{path:'courseProvider>/name'}, {path:'courseProvider>/url'}, {path:'courseProvider>/searchApiUrlPattern'}, {path:'courseProvider>/searchResultParserCfg/resultPath'}, {path:'courseProvider>/searchResultParserCfg/titleField'}, {path:'courseProvider>/searchResultParserCfg/urlPattern'}, {path:'courseProvider>/searchResultParserCfg/resultFieldType'}, {path:'courseProvider>/searchResultParserCfg/descriptionField'}], formatter:'.determineSaveBtnState'}"></div>
+					<div data-sap-ui-type="sap.ui.commons.Button" data-width="85%" data-press="onDeleteCourseProvider" data-text="Delete" data-enabled="false" id="deleteProviderBtn" data-icon="sap-icon://delete"></div>
+				</div>
+				
+				
+			</div>
+		</div>
+</div>
+</template>

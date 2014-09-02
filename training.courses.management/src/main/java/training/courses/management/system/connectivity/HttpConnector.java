@@ -95,7 +95,11 @@ public abstract class HttpConnector implements Connector {
 	}
 
 	private String buildRequestURI(String resourcePath) {
-		return url + formatResourcePath(resourcePath);
+		if (url.endsWith("/")) {
+			return url + formatResourcePath(resourcePath);
+		} else {
+			return url + "/" + formatResourcePath(resourcePath);
+		}
 	}
 
 	private String formatResourcePath(String resourcePath) {

@@ -23,7 +23,7 @@ training.courses.management.util.Helper = {
 			url : path,
 			success : fSuccess
 		}).fail(fFail).always(function(arg0, textStatus, arg2) {
-			sap.ui.getCore().getEventBus().publish("deleteFinished", "completed");
+			sap.ui.getCore().getEventBus().publish("deleteFinished", "finished");
 		});
 	},
 
@@ -35,7 +35,7 @@ training.courses.management.util.Helper = {
 			success : fSuccess,
 			contentType : "application/json; charset=utf-8"
 		}).fail(fFail).always(function(arg0, textStatus, arg2) {
-			sap.ui.getCore().getEventBus().publish("postFinished", "completed");
+			sap.ui.getCore().getEventBus().publish("postFinished", "finished");
 		});
 	},
 
@@ -47,7 +47,7 @@ training.courses.management.util.Helper = {
 			success : fSuccess,
 			contentType : "application/json; charset=utf-8"
 		}).fail(fFail).always(function(arg0, textStatus, arg2) {
-			sap.ui.getCore().getEventBus().publish("putFinished", "completed");
+			sap.ui.getCore().getEventBus().publish("putFinished", "finished");
 		});
 	},
 

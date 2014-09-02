@@ -1,0 +1,44 @@
+<template data-controller-name="training.courses.management.view.Contexts">
+	<div data-sap-ui-type="sap.ui.commons.Panel" data-show-collapse-icon="false" data-area-design="Plain">
+		<div data-sap-ui-aggregation="title">
+			<div data-sap-ui-type="sap.ui.core.Title" data-text="Contexts" data-level="H2" data-emphasized="true"></div>
+		</div>
+		<div data-sap-ui-aggregation="content">
+			<div data-sap-ui-type="sap.ui.layout.form.SimpleForm">
+				<div data-sap-ui-type="sap.ui.core.Title" data-text="Configuration"></div>
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text="Context" data-tooltip="Context"></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.ComboBox" id="contextsCombo" data-width="35em" data-tooltip="{i18n>contextComboTooltip}" data-enabled="true" data-items="{contexts>/}"
+						 data-change="onContextSelect">
+						<div data-sap-ui-aggregation="items">
+								<div data-sap-ui-type="sap.ui.core.ListItem" data-key="{contexts>name}" data-text="{contexts>name}"></div>
+						</div>
+						<div data-sap-ui-aggregation="layoutData"></div>
+					</div>
+					<div data-sap-ui-type="sap.ui.commons.Image" id="contextWarningImage" class="imgMargin" data-src="img/warning.png" data-visible="true">
+						<div data-sap-ui-aggregation="tooltip">
+							<div data-sap-ui-type="sap.ui.commons.RichTooltip" data-title="{i18n>invalidContext}" data-text="{i18n>invalidContextMsg}"></div>
+						</div>
+					</div>
+				</div>
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text="Keywords" data-tooltip="Keywords"></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.TextField" id="keywordsTextField" data-width="35em" data-tooltip="{i18n>keywordsTextFieldTooltip}"></div>
+					<div data-sap-ui-type="sap.ui.commons.Image" id="keywordsWarningImage" class="imgMargin" data-src="img/warning.png" data-visible="true">
+						<div data-sap-ui-aggregation="tooltip">
+							<div data-sap-ui-type="sap.ui.commons.RichTooltip" data-title="{i18n>invalidKeywords}" data-text="{i18n>invalidKeywordsMsg}"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div data-sap-ui-type="sap.ui.commons.Label" data-text=""></div>
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout">
+					<div data-sap-ui-type="sap.ui.commons.Button" data-width="85%" data-press="onSaveContext" data-text="Save" id="saveContextBtn" data-enabled="false" data-visible="true" data-icon="sap-icon://save"></div>
+					<div data-sap-ui-type="sap.ui.commons.Button" data-width="85%" data-press="onDeleteContext" data-text="Delete" data-enabled="false" id="contextDeleteBtn" data-icon="sap-icon://delete"></div>
+				</div>
+				
+				
+			</div>
+		</div>
+</div>
+</template>

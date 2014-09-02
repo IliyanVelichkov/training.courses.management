@@ -62,7 +62,7 @@ public class LMSV1AccessTokenGenerator implements AccessTokenGenerator {
 	}
 
 	private AccessTokenRequest createAccessTokeRequest() {
-		OAuthScope scope = new OAuthScope(credentials.getUserId(), credentials.getCompanyId(), LMSUserType.ADMIN.getType(), RESOURCE_TYPE);
+		OAuthScope scope = new OAuthScope(credentials.getUserId(), credentials.getCompanyId(), LMSUserType.USER.getType(), RESOURCE_TYPE);
 		return new AccessTokenRequest(GRANT_TYPE, scope, credentials.getClientId(), credentials.getClientSecret());
 	}
 
