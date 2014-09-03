@@ -1,18 +1,15 @@
 <template data-controller-name="training.courses.management.view.Courses">
 
 	<div data-sap-ui-type="sap.ui.commons.Panel" data-show-collapse-icon="false">
-		<div data-sap-ui-aggregation="title">
-			<div data-sap-ui-type="sap.ui.core.Title" data-text="{i18n>providerTitle}" data-level="H2" data-emphasized="true"></div>
-		</div>
 		<div data-sap-ui-aggregation="content">
 			<div data-sap-ui-type="sap.ui.layout.VerticalLayout">
 				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout" id="searchLayout" data-visible="false">
-					<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>searchFieldLbl}" data-tooltip="{i18n>searchFieldLbl}" class="searchLabelStyle"></div>
-					<div data-sap-ui-type="sap.ui.commons.SearchField" id="searchField" data-width="25em" data-search="onSearch" data-enable-list-suggest="false">
+					<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>searchFieldLbl}" data-tooltip="{i18n>searchFieldLblTooltip}" class="searchLabelStyle"></div>
+					<div data-sap-ui-type="sap.ui.commons.SearchField" id="searchField" data-width="25em" data-search="onSearch" data-enable-list-suggest="false" data-tooltip="{i18n>searchFieldTooltip}">
 					</div>
 				</div>
 				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout" id="courseProviderLayout" data-visible="true">
-					<div data-sap-ui-type="sap.ui.commons.Label" data-text="Name" data-tooltip="{i18n>selectCourseProviderNameTooltip}"></div>
+					<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>selectCourseProviderNameLbl}" data-tooltip="{i18n>selectCourseProviderNameTooltip}"></div>
 					<div data-sap-ui-type="sap.ui.commons.ComboBox" id="courseProviderNameCombo" data-width="35em" data-tooltip="{i18n>courseProviderNameComboTooltip}" data-enabled="true"
 						data-items="{courseProviders>/}" data-change="onCourseProviderSelect">
 						<div data-sap-ui-aggregation="items">

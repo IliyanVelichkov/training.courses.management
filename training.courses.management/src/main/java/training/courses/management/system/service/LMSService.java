@@ -33,13 +33,13 @@ public class LMSService extends BaseService {
 	@Path("/trainingCourses")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAvailabeTrainingCourses(@QueryParam("searchPhrase") String searchPhrase) {
-		String trainingCoursesJsonList;
+		String searchResponseJSON;
 		try {
-			trainingCoursesJsonList = lmsClient.searchTrainingCourses(searchPhrase);
+			searchResponseJSON = lmsClient.searchOnlineCourses(searchPhrase);
 		} catch (ServiceException ex) {
 			return buildErrResponse("Failed to get available LMS training courses.", ex); //$NON-NLS-1$
 		}
-		return buildOkResponse(trainingCoursesJsonList);
+		return buildOkResponse(searchResponseJSON);
 	}
 
 }
