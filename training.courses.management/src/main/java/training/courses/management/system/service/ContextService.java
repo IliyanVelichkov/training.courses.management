@@ -77,6 +77,17 @@ public class ContextService extends BaseService {
 		return null == context || StringUtils.isEmpty(context.getName()) || context.getKeywords() == null || context.getKeywords().isEmpty();
 	}
 
+	@GET
+	@Path("/{contextName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getContext(@PathParam("contextName") String contextName) {
+		Context foundCtx = contextDAO.find(Context.class, contextName);
+		if (null == foundCtx) {
+			return buildBadRequestResponse("Missing context with name " + contextName); //$NON-NLS-1$
+		}
+		return buildOkResponse(foundCtx);
+	}
+
 	@DELETE
 	@Path("/{contextName}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,7 +105,7 @@ public class ContextService extends BaseService {
 	@Path("/{contextName}/keywords")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteContext(@PathParam("contextName") String contextName, List<Keyword> keywords) {
+	public Response putKeywords(@PathParam("contextName") String contextName, List<Keyword> keywords) {
 		Context foundCtx = contextDAO.find(Context.class, contextName);
 		if (null == foundCtx) {
 			return buildBadRequestResponse("Missing context with name " + contextName); //$NON-NLS-1$

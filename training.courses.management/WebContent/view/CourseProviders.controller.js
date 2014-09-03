@@ -67,6 +67,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 		if (!selectedItem) {
 			return;
 		}
+
 		var selectedCourseProvider = selectedItem.getBindingContext("courseProviders").getObject();
 		var copiedObject = {};
 		jQuery.extend(copiedObject, selectedCourseProvider);

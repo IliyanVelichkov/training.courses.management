@@ -17,6 +17,32 @@ training.courses.management.util.Helper = {
 		return oDate && outputDateFormatter.format(oDate);
 	},
 
+	synchGetJSON : function(sPath, fSuccess, fError) {
+		var result = {
+			data : null
+		};
+
+		var closureSuccFunc = function(result) {
+			return jQuery.proxy(function(oRespData, textStatus, jqXHR) {
+				fSuccess(oRespData, textStatus, jqXHR);
+				result.data = oRespData;
+			}, this);
+		};
+
+		jQuery.ajax({
+			async : false,
+			url : sPath,
+			type : 'GET',
+			dataType : 'json',
+			success : closureSuccFunc(result),
+			error : fError,
+			complete : function() {
+				sap.ui.getCore().getEventBus().publish("getFinished", "finished");
+			}
+		});
+		return result.data;
+	},
+
 	httpDelete : function(path, fSuccess, fFail) {
 		$.ajax({
 			type : "DELETE",

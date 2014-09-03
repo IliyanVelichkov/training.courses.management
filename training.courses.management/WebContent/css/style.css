@@ -69,10 +69,21 @@ div[id$=formContainer-content]>div:first-child {
 }
 
 .sapUiRFLRow {
-	margin: 10px;
+	margin: 0.5em;
 }
 
 .displayNone {
 	display: none;
 }
 
+#CoursesId .sapUiHLayout{
+	margin: 0.5em 0 2em 0;
+}
+
+#CoursesId .sapUiHLayout > .sapUiHLayoutChildWrapper{
+	margin-right: 1.5em;
+}
+
+.sapUiFormResLayout>div {
+	padding: 2em 3em;
+}

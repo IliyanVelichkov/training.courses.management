@@ -21,12 +21,12 @@ html[data-sap-ui-browser='ie9'] .sapUiUx3ShellHeader, html[data-sap-ui-browser='
 
 .sapUiUx3NavBarToplevel .sapUiUx3NavBarList>.sapUiUx3NavBarItemSel,.sapUiUx3NavBarToplevel .sapUiUx3NavBarList>li:hover,.sapUiUx3NavBarToplevel .sapUiUx3NavBarItem:hover,.sapUiUx3NavBarToplevel .sapUiUx3NavBarItemSel>a,.sapUiUx3NavBarToplevel .sapUiUx3NavBarItemSel>a:hover
 	{
-	color: #33A1EB;
+	color: #33A1EB !important;
 }
 
 .sapUiUx3NavBarToplevel .sapUiUx3NavBarList>li,.sapUiUx3NavBarToplevel .sapUiUx3NavBarItem
 	{
-	color: #3C3739;
+	color: #3C3739 !important;
 }
 
 .sapUiUx3ShellCanvasBackground,.sapUiUx3ShellCanvas { -
@@ -239,4 +239,23 @@ TableSelModeSingle .sapUiTableRowHdr.sapUiTableRowSel,.sapUiTableSelModeSingle .
 
 .sapUiTable>.sapUiTableHdr {
 	border-bottom: 2px solid #33A1EB;
+}
+
+.sapUiTvH2 {
+	color : #167ABC !important;
+}
+
+.sapUiFormTitleH3{
+	color : #33A1EB !important;
+}
+
+#app--shellId-logoImg{
+	min-width: 3.5rem;
+	min-height: 3.5rem;
+}
+
+.sapUiLbl{
+	color: #338933;
+	font-weight: 800;
+	font-size: 0.85rem;
 }
