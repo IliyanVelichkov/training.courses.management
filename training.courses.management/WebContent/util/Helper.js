@@ -51,4 +51,8 @@ training.courses.management.util.Helper = {
 		});
 	},
 
+	getContext : function() {
+		return jQuery.sap.getUriParameters().get("context");
+	}
+
 };

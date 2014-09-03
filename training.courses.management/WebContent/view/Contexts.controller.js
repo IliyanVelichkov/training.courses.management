@@ -35,7 +35,11 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Contexts", {
 		this.getView().setModel(model, this.MODELS.contexts);
 
 		this.CONTROLS.contextCombo.setValue(null);
+		this._displayWarningContext(null);
+
 		this.CONTROLS.keywordsTextField.setValue(null);
+		this._displayWarningKeywords(null);
+
 		this._enableDeleteButton(false);
 		this._enableSaveButton(false);
 	},
@@ -91,7 +95,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Contexts", {
 	onContextTyping : function(evnt) {
 		var liveValue = evnt.getParameter("liveValue");
 		var isContextExists = this._isContextExists(liveValue);
-		this._setApprKeywords(isContextExists, liveValue);
+		// this._setApprKeywords(isContextExists, liveValue);
 		this._determineSaveBtnState(liveValue);
 		this._enableDeleteButton(isContextExists);
 		this._displayWarningContext(liveValue);
@@ -163,11 +167,10 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Contexts", {
 		var context = this.CONTROLS.contextCombo.getSelectedKey();
 		training.courses.management.util.Helper.httpDelete("/rest/api/v1/contexts/" + context, jQuery.proxy(function(
 				oResponseData) {
-			sap.ui.commons.MessageBox.alert(this.localize("successfulContextDeletion"), null, this
-					.localize("operationSuccess"));
+			sap.ui.commons.MessageBox.alert("successfulContextDeletion".localize(), null, "operationSuccess".localize());
 			this.refresh();
 		}, this), jQuery.proxy(function(oResponseData) {
-			sap.ui.commons.MessageBox.alert(this.localize("failedContextDeletion"), null, this.localize("operationFailed"));
+			sap.ui.commons.MessageBox.alert("failedContextDeletion".localize(), null, "operationFailed".localize());
 		}, this));
 	},
 
@@ -177,7 +180,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Contexts", {
 		var keywordsStr = this.CONTROLS.keywordsTextField.getValue();
 		var cleanKeywords = this._getCleanedKeywords(keywordsStr);
 		if (cleanKeywords.length == 0) {
-			sap.ui.commons.MessageBox.alert(this.localize("invalidKeywordsFormat"), null, this.localize("invalidKeywords"));
+			sap.ui.commons.MessageBox.alert("invalidKeywordsFormat".localize(), null, "invalidKeywords".localize());
 		}
 
 		var selectedKey = this.CONTROLS.contextCombo.getSelectedKey();
@@ -202,12 +205,12 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Contexts", {
 
 	_putContext : function(contextName, aKeywords) {
 		var successFunc = jQuery.proxy(function(oResponseData) {
-			sap.ui.commons.MessageBox.alert(this.localize("successfulContextPut"), null, this.localize("operationSuccess"));
+			sap.ui.commons.MessageBox.alert("successfulContextPut".localize(), null, "operationSuccess".localize());
 			this.refresh();
 		}, this);
 
 		var failFunc = jQuery.proxy(function(oResponseData) {
-			sap.ui.commons.MessageBox.alert(this.localize("failedContextPut"), null, this.localize("operationFailed"));
+			sap.ui.commons.MessageBox.alert("failedContextPut".localize(), null, "operationFailed".localize());
 		}, this);
 
 		training.courses.management.util.Helper.putJson("/rest/api/v1/contexts/" + contextName.trim() + "/" + "keywords",
@@ -218,12 +221,12 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Contexts", {
 		var body = this._createBody(contextName, aKeywords);
 
 		var successFunc = jQuery.proxy(function(oResponseData) {
-			sap.ui.commons.MessageBox.alert(this.localize("successfulContextPost"), null, this.localize("operationSuccess"));
+			sap.ui.commons.MessageBox.alert("successfulContextPost".localize(), null, "operationSuccess".localize());
 			this.refresh();
 		}, this);
 
 		var failFunc = jQuery.proxy(function(oResponseData) {
-			sap.ui.commons.MessageBox.alert(this.localize("failedContextPost"), null, this.localize("operationFailed"));
+			sap.ui.commons.MessageBox.alert("failedContextPost".localize(), null, "operationFailed".localize());
 		}, this);
 
 		training.courses.management.util.Helper.postJson("/rest/api/v1/contexts", body, successFunc, failFunc);
@@ -234,10 +237,6 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Contexts", {
 			name : contextName.trim(),
 			keywords : this._createKeywordObjects(aKeywords)
 		};
-	},
-
-	localize : function(key) {
-		return this.getView().getModel("i18n").getProperty(key);
 	},
 
 	_createKeywordObjects : function(aKeywordNames) {

@@ -108,10 +108,11 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 		var liveValue = evnt.getParameter("liveValue");
 		var existingProviderItem = this._getExistingProviderItem(liveValue);
 		if (existingProviderItem) {
-			this.CONTROLS.courseProviderNameCombo.fireChange({
-				"newValue" : liveValue,
-				"selectedItem" : existingProviderItem
-			});
+			// this.CONTROLS.courseProviderNameCombo.fireChange({
+			// "newValue" : liveValue,
+			// "selectedItem" : existingProviderItem
+			// });
+			this._enableDeleteBtn(true);
 		} else {
 			this._enableDeleteBtn(false);
 			if (this._isInvalidString(liveValue)) {
@@ -168,18 +169,16 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 
 	_putCourseProvider : function(oBody) {
 		var successFunc = jQuery.proxy(function(oResponseData) {
-			sap.ui.commons.MessageBox.alert(this.localize("successfulCourseProviderPut"), null, this
-					.localize("operationSuccess"));
+			sap.ui.commons.MessageBox.alert("successfulCourseProviderPut".localize(), null, "operationSuccess".localize());
 			this.refresh();
 		}, this);
 
 		var failFunc = jQuery.proxy(function(oResponseData) {
 			if (oResponseData.status == 400) {
 				var aErrors = oResponseData.responseJSON.message;
-				sap.ui.commons.MessageBox.alert(this._createErrorsMessage(aErrors), null, this.localize("operationFailed"));
+				sap.ui.commons.MessageBox.alert(this._createErrorsMessage(aErrors), null, "operationFailed".localize());
 			} else {
-				sap.ui.commons.MessageBox.alert(this.localize("failedCourseProviderPut"), null, this
-						.localize("operationFailed"));
+				sap.ui.commons.MessageBox.alert("failedCourseProviderPut".localize(), null, "operationFailed".localize());
 			}
 		}, this);
 
@@ -189,18 +188,16 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 
 	_postCourseProvider : function(oBody) {
 		var successFunc = jQuery.proxy(function(oResponseData) {
-			sap.ui.commons.MessageBox.alert(this.localize("successfulCourseProviderPost"), null, this
-					.localize("operationSuccess"));
+			sap.ui.commons.MessageBox.alert("successfulCourseProviderPost".localize(), null, "operationSuccess".localize());
 			this.refresh();
 		}, this);
 
 		var failFunc = jQuery.proxy(function(oResponseData) {
 			if (oResponseData.status == 400) {
 				var aErrors = oResponseData.responseJSON.message;
-				sap.ui.commons.MessageBox.alert(this._createErrorsMessage(aErrors), null, this.localize("operationFailed"));
+				sap.ui.commons.MessageBox.alert(this._createErrorsMessage(aErrors), null, "operationFailed".localize());
 			} else {
-				sap.ui.commons.MessageBox.alert(this.localize("failedCourseProviderPost"), null, this
-						.localize("operationFailed"));
+				sap.ui.commons.MessageBox.alert("failedCourseProviderPost".localize(), null, "operationFailed".localize());
 			}
 			sap.ui.getCore().getEventBus().publish("postFinished", "failed");
 		}, this);
@@ -223,12 +220,11 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 		var courseProviderName = this.CONTROLS.courseProviderNameCombo.getSelectedKey();
 		training.courses.management.util.Helper.httpDelete("/rest/api/v1/providers/" + courseProviderName, jQuery.proxy(
 				function(oResponseData) {
-					sap.ui.commons.MessageBox.alert(this.localize("successfulCourseProviderDeletion"), null, this
-							.localize("operationSuccess"));
+					sap.ui.commons.MessageBox.alert("successfulCourseProviderDeletion".localize(), null, "operationSuccess"
+							.localize());
 					this.refresh();
 				}, this), jQuery.proxy(function(oResponseData) {
-			sap.ui.commons.MessageBox.alert(this.localize("failedCourseProviderDeletion"), null, this
-					.localize("operationFailed"));
+			sap.ui.commons.MessageBox.alert("failedCourseProviderDeletion".localize(), null, "operationFailed".localize());
 		}, this));
 
 	},
@@ -239,10 +235,6 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 		if (this._isInvalidString(liveValue)) {
 			this._enableSaveBtn(false);
 		}
-	},
-
-	localize : function(key) {
-		return this.getView().getModel("i18n").getProperty(key);
-	},
+	}
 
 });
