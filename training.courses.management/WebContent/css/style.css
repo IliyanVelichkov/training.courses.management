@@ -87,3 +87,7 @@ div[id$=formContainer-content]>div:first-child {
 .sapUiFormResLayout>div {
 	padding: 2em 3em;
 }
+
+.searchLabelStyle{
+	margin-right : -0.7em !important;
+}

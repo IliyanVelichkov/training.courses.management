@@ -242,7 +242,7 @@ TableSelModeSingle .sapUiTableRowHdr.sapUiTableRowSel,.sapUiTableSelModeSingle .
 }
 
 .sapUiTvH2 {
-	color : #167ABC !important;
+	color : #004AB8 !important;
 }
 
 .sapUiFormTitleH3{
@@ -258,4 +258,12 @@ TableSelModeSingle .sapUiTableRowHdr.sapUiTableRowSel,.sapUiTableSelModeSingle .
 	color: #338933;
 	font-weight: 800;
 	font-size: 0.85rem;
+}
+
+.sapUiTableHdrTitle{
+	color: #167ABC !important;
+}
+
+.sapUiUx3NavBarItem{
+	font-size: 1.1rem !important;
 }

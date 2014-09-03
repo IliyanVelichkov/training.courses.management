@@ -79,6 +79,10 @@ training.courses.management.util.Helper = {
 
 	getContext : function() {
 		return jQuery.sap.getUriParameters().get("context");
-	}
+	},
+
+	isInvalidString : function(value) {
+		return value == null || value == undefined ? true : !value.trim();
+	},
 
 };

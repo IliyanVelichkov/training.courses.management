@@ -7,37 +7,63 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Courses", {
 	},
 
 	onInit : function() {
-		this.load();
 		this._subscribeForCustomEvents();
+	},
+
+	_searchEnabled : false,
+
+	_enableSearchLayout : function(bEnable) {
+		this.getView().byId("searchLayout").setVisible(bEnable);
+	},
+
+	_enableCourseProviderCombo : function(bEnable) {
+		this.getView().byId("courseProviderNameCombo").setEnabled(bEnable);
+	},
+
+	_enableUrlTextField : function(bEnable) {
+		this.getView().byId("providerUrlTextField").setEnabled(bEnable);
+	},
+
+	_enableOpenCourseBtn : function(bEnable) {
+		this.getView().byId("courseOpen").setEnabled(bEnable);
 	},
 
 	load : function() {
 		var context = training.courses.management.util.Helper.getContext();
 		if (!context) {
-			sap.ui.commons.MessageBox.alert("missingContextQueryParameterMsg".localize(), null, "error".localize());
-			return;
-		}
-		this.refresh(context);
-		var courseProvidersModel = this.getView().getModel(this.MODELS.courseProviders);
-		if (!courseProvidersModel || courseProvidersModel.getData().length == 0) {
-			sap.ui.commons.MessageBox.alert("missingRegisteredCoursesProvidersMsg".localize(), null, "alert".localize());
+			this._searchEnabled = true;
+			this._enableSearchLayout(true);
+			this._enableCourseProviderCombo(false);
+			this._enableUrlTextField(false);
 		} else {
-			var courseProvidersCombo = this.getView().byId("courseProviderNameCombo");
-			var firstItem = courseProvidersCombo.getItems()[0];
-			courseProvidersCombo.setValue(firstItem.getKey());
-			courseProvidersCombo.fireChange({
-				"newValue" : firstItem.getKey(),
-				"selectedItem" : courseProvidersCombo.getItems()[0]
-			});
+			this._asynchLoadModel(this.MODELS.context, "/rest/api/v1/contexts/" + context);
 		}
+		this._enableOpenCourseBtn(false);
+		this.refresh(context);
 	},
 
 	refresh : function(context) {
 		this._asynchLoadModel(this.MODELS.courseProviders, "/rest/api/v1/providers");
-		this._asynchLoadModel(this.MODELS.context, "/rest/api/v1/contexts/" + context);
+
 		var coursesModel = new sap.ui.model.json.JSONModel();
 		coursesModel.setData({});
 		this.getView().setModel(coursesModel, this.MODELS.courses);
+
+		var courseProvidersModel = this.getView().getModel(this.MODELS.courseProviders);
+		if (!courseProvidersModel || courseProvidersModel.getData().length == 0) {
+			sap.ui.commons.MessageBox.alert("missingRegisteredCoursesProvidersMsg".localize(), null, "alert".localize());
+			this._enableSearchLayout(false);
+			this._enableCourseProviderCombo(false);
+			this._enableUrlTextField(false);
+		} else {
+			// var courseProvidersCombo = this.getView().byId("courseProviderNameCombo");
+			// var firstItem = courseProvidersCombo.getItems()[0];
+			// courseProvidersCombo.setValue(firstItem.getKey());
+			// courseProvidersCombo.fireChange({
+			// "newValue" : firstItem.getKey(),
+			// "selectedItem" : courseProvidersCombo.getItems()[0]
+			// });
+		}
 	},
 
 	_asynchLoadModel : function(modelName, dataPath) {
@@ -65,10 +91,11 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Courses", {
 		var selectedCourseProvider = selectedItem.getBindingContext("courseProviders").getObject();
 		this._setURL(selectedCourseProvider.url);
 
-		if (selectedCourseProvider.courses) {
+		if (selectedCourseProvider.courses && !this._searchEnabled) {
 			this.getView().getModel(this.MODELS.courses).setData(selectedCourseProvider.courses);
 		} else {
 			var courses = this._loadProviderCourses(selectedCourseProvider);
+			this._filterCourses(courses);
 			selectedCourseProvider.courses = courses;
 			this.getView().getModel(this.MODELS.courses).setData(courses);
 		}
@@ -104,12 +131,29 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Courses", {
 		}, this);
 
 		var failFunc = jQuery.proxy(function(oResponseData) {
-			sap.ui.commons.MessageBox.alert("Failed to get courses with keyword " + oKeyword.name, null, "operationFailed"
-					.localize());
+			if (oResponseData.status == 400) {
+				sap.ui.commons.MessageBox.alert("Could not find courses with keyword " + oKeyword.name, null, "operationFailed"
+						.localize());
+			} else {
+				sap.ui.commons.MessageBox.alert("Failed to get courses with keyword " + oKeyword.name, null, "operationFailed"
+						.localize());
+			}
 		}, this);
 
 		var path = "/rest/api/v1/providers/" + providerName + "/courses?searchPhrase=" + oKeyword.name;
 		return training.courses.management.util.Helper.synchGetJSON(path, successFunc, failFunc);
+	},
+
+	_filterCourses : function(courses) {
+		var aTitles = [];
+		for (var idx = 0; idx < courses.length; idx++) {
+			var courseTitle = courses[idx].title;
+			if (aTitles.indexOf(courseTitle) != -1 || training.courses.management.util.Helper.isInvalidString(courseTitle)) {
+				courses.splice(idx, 1);
+				continue;
+			}
+			aTitles.push(courseTitle);
+		}
 	},
 
 	onAfterRendering : function() {
@@ -117,8 +161,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Courses", {
 	},
 
 	onRowChange : function(evnt) {
-		var openBtn = this.getView().byId("courseOpen");
-		openBtn.setEnabled(true);
+		this._enableOpenCourseBtn(true);
 	},
 
 	onShowCourse : function(evnt) {
@@ -130,6 +173,27 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.Courses", {
 	_getSelectedItemData : function() {
 		var table = this.byId("coursesTable");
 		return table.getModel("courses").getProperty("/" + table.getSelectedIndex());
+	},
+
+	onSearch : function(evnt) {
+		var query = evnt.getParameter("query");
+		this.getView().byId("courseProviderNameCombo").setSelectedItemId(null);
+		if (training.courses.management.util.Helper.isInvalidString(query)) {
+			sap.ui.commons.MessageBox.alert("searchEmptyStringMsg".localize(), null, "error".localize());
+			this._enableCourseProviderCombo(false);
+			this._enableUrlTextField(false);
+			return;
+		}
+		var ctxModel = new sap.ui.model.json.JSONModel();
+		ctxModel.setData({
+			"name" : "searchContext",
+			"keywords" : [{
+				"name" : query.trim()
+			}]
+		});
+		this.getView().setModel(ctxModel, this.MODELS.context);
+		this._enableCourseProviderCombo(true);
+		this._enableUrlTextField(true);
 	}
 
 });

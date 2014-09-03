@@ -1,7 +1,10 @@
 package training.courses.management.system.service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -120,12 +123,16 @@ public class CourseProviderService extends BaseService {
 		CoursesProviderClient client = CoursesProviderClientFactory.INSTANCE.createCoursesProviderClient(foundCourseProvider);
 
 		try {
-			return buildOkResponse(client.searchCourses(searchPhrase));
+			return buildOkResponse(client.searchCourses(URLEncoder.encode(searchPhrase, "UTF-8")));
 		} catch (ServiceException ex) {
+			if (ex.getResponseCode() == HttpServletResponse.SC_NOT_FOUND) {
+				return buildBadRequestResponse("Missing search result"); //$NON-NLS-1$
+			}
 			return buildErrResponse("Course provider connection error.", ex); //$NON-NLS-1$
 		} catch (SearchResultParseException ex) {
 			return buildErrResponse("Failed to parse course provider resposne.", ex); //$NON-NLS-1$
+		} catch (UnsupportedEncodingException e) {
+			throw new IllegalArgumentException("Failed to encode the search phrase " + searchPhrase); //$NON-NLS-1$
 		}
 	}
-
 }

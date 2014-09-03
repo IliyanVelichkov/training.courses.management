@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.http.Header;
@@ -122,15 +123,23 @@ public abstract class HttpConnector implements Connector {
 
 	private void validateResponse(HttpResponse response) throws ServiceException {
 		int responseCode = response.getStatusLine().getStatusCode();
-		if (responseCode < 200 || responseCode >= 300) {
+		if (responseCode < HttpServletResponse.SC_OK || responseCode >= HttpServletResponse.SC_MULTIPLE_CHOICES) {
 			HttpEntity entity = response.getEntity();
 			if (null != entity) {
 				String body = getResponseBody(entity);
 				String errMsg = String.format("Invalid response. Staus code [%d] Body [%s]", responseCode, body);
-				handleError(errMsg);
+				if (responseCode == HttpServletResponse.SC_NOT_FOUND) {
+					handleError(errMsg, responseCode);
+				} else {
+					handleError(errMsg);
+				}
 			}
 			String errMsg = String.format("Invalid response. Staus code [%d]", responseCode);
-			handleError(errMsg);
+			if (responseCode == HttpServletResponse.SC_NOT_FOUND) {
+				handleError(errMsg, responseCode);
+			} else {
+				handleError(errMsg);
+			}
 		}
 	}
 
@@ -159,6 +168,11 @@ public abstract class HttpConnector implements Connector {
 	private ServiceHttpResponse handleError(String message, Throwable cause) throws ServiceException {
 		LOGGER.error(message, cause);
 		throw new ServiceException(message, cause);
+	}
+
+	private void handleError(String message, int responseCode) throws ServiceException {
+		LOGGER.error(message);
+		throw new ServiceException(message, responseCode);
 	}
 
 }

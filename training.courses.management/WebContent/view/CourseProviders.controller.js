@@ -116,7 +116,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 			this._enableDeleteBtn(true);
 		} else {
 			this._enableDeleteBtn(false);
-			if (this._isInvalidString(liveValue)) {
+			if (training.courses.management.util.Helper.isInvalidString(liveValue)) {
 				this._enableSaveBtn(false);
 			}
 		}
@@ -144,15 +144,11 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 	determineSaveBtnState : function() {
 		for ( var idx in arguments) {
 			var value = arguments[idx];
-			if (this._isInvalidString(value)) {
+			if (training.courses.management.util.Helper.isInvalidString(value)) {
 				return false;
 			}
 		}
 		return true;
-	},
-
-	_isInvalidString : function(value) {
-		return value == null || value == undefined ? true : !value.trim();
 	},
 
 	onSaveCourseProvider : function(evnt) {
@@ -233,7 +229,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 	onLiveChangeDetermineSaveBtnState : function(evnt) {
 		var liveValue = evnt.getParameter("liveValue");
 		evnt.getSource().updateBindings();
-		if (this._isInvalidString(liveValue)) {
+		if (training.courses.management.util.Helper.isInvalidString(liveValue)) {
 			this._enableSaveBtn(false);
 		}
 	}
