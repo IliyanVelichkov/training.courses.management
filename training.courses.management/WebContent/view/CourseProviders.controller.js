@@ -10,8 +10,8 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 	onInit : function() {
 		this._loadControls();
 		this._attachCustomEvents();
-		this.refresh();
 		this._subscribeForCustomEvents();
+		this.refresh();
 	},
 
 	_loadControls : function() {
@@ -59,7 +59,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 	},
 
 	onAfterRendering : function() {
-		// this.refresh();
+		this.refresh();
 	},
 
 	onCourseProviderSelect : function(evnt) {
