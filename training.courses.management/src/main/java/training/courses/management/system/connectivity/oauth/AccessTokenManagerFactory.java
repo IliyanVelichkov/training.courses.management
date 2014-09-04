@@ -5,7 +5,7 @@ import training.courses.management.system.connectivity.lms.oauth.LMSAccessTokenM
 public enum AccessTokenManagerFactory {
 	INSTANCE;
 
-	public AccessTokenManager createLMSAccessTokenManager() {
-		return new LMSAccessTokenManager();
+	public AccessTokenManager createLMSAccessTokenManager(String userId) {
+		return new LMSAccessTokenManager(userId);
 	}
 }

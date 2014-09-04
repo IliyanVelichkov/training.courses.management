@@ -1,5 +1,4 @@
-<template data-controller-name="training.courses.management.view.Courses">
-
+<template data-controller-name="training.courses.management.view.ExternalCourses">
 	<div data-sap-ui-type="sap.ui.commons.Panel" data-show-collapse-icon="false">
 		<div data-sap-ui-aggregation="content">
 			<div data-sap-ui-type="sap.ui.layout.VerticalLayout">
@@ -21,7 +20,7 @@
 					<div data-sap-ui-type="sap.ui.commons.Button" data-text="Open" data-press="onOpenProvider" class="courseButton" data-enabled="false" id="providerOpenBtn" data-icon="sap-icon://show"></div>
 				</div>
 				<div data-sap-ui-type="sap.ui.table.Table" id="coursesTable" data-selection-mode="Single" data-rows="{courses>/}" data-editable="false"
-					data-row-selection-change="onRowChange" data-visible-row-count="20" data-title="Courses {path:'courses>/', formatter:'.formatCount'}">
+					data-row-selection-change="onRowChange" data-visible-row-count="20" data-title="Courses {path:'courses>/', formatter:'training.courses.management.util.Helper.formatCount'}">
 					<div data-sap-ui-aggregation="columns">
 						<div data-sap-ui-type="sap.ui.table.Column" data-sort-property="title" data-filter-property="title">
 							<div data-sap-ui-aggregation="label">
@@ -49,12 +48,10 @@
 						</div>
 					</div>
 				</div>
-					<div data-sap-ui-type="sap.ui.layout.HorizontalLayout" class="buttonContainer">
+				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout" class="buttonContainer">
 					<div data-sap-ui-type="sap.ui.commons.Button" data-text="Open" data-press="onShowCourse" class="courseButton" data-enabled="false" id="courseOpen" data-icon="sap-icon://show"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 </template>

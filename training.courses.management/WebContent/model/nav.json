@@ -1,11 +1,11 @@
 {
 	"items" : [{
-			"key" : "wi_courses",
-			"shortViewName" : "Courses",
+			"key" : "wi_external_courses",
+			"shortViewName" : "ExternalCourses",
 			"requiredRole" : "Everyone"
 		}, {
-			"key" : "wi_favorites",
-			"shortViewName" : "Favorites",
+			"key" : "wi_lms_online_courses",
+			"shortViewName" : "LMSOnlineCourses",
 			"requiredRole" : "Everyone"
 		}, {
 			"key" : "wi_administration",

@@ -17,4 +17,12 @@ public class ServiceHttpResponse {
 	public String getBody() {
 		return body;
 	}
+
+	@Override
+	@SuppressWarnings("nls")
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ServiceHttpResponse [responseCode=").append(responseCode).append(", body=").append(body).append("]");
+		return builder.toString();
+	}
 }

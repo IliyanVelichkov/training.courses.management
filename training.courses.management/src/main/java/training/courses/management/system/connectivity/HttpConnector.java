@@ -129,9 +129,9 @@ public abstract class HttpConnector implements Connector {
 				String body = getResponseBody(entity);
 				String errMsg = String.format("Invalid response. Staus code [%d] Body [%s]", responseCode, body);
 				if (responseCode == HttpServletResponse.SC_NOT_FOUND) {
-					handleError(errMsg, responseCode);
+					handleError(errMsg, responseCode, body);
 				} else {
-					handleError(errMsg);
+					handleError(errMsg, responseCode, body);
 				}
 			}
 			String errMsg = String.format("Invalid response. Staus code [%d]", responseCode);
@@ -172,7 +172,12 @@ public abstract class HttpConnector implements Connector {
 
 	private void handleError(String message, int responseCode) throws ServiceException {
 		LOGGER.error(message);
-		throw new ServiceException(message, responseCode);
+		throw new ServiceException(message, responseCode, "");
+	}
+
+	private void handleError(String message, int responseCode, String body) throws ServiceException {
+		LOGGER.error(message);
+		throw new ServiceException(message, responseCode, body);
 	}
 
 }

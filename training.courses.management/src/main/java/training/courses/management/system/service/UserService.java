@@ -29,4 +29,9 @@ public class UserService extends BaseService {
 		boolean isUserInRole = request.isUserInRole(role);
 		return buildOkResponse(isUserInRole);
 	}
+
+	@GET
+	public Response getLoggedInUser() {
+		return buildOkResponse(request.getRemoteUser());
+	}
 }

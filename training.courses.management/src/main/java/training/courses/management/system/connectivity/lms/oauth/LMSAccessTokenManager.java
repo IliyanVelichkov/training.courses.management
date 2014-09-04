@@ -14,8 +14,8 @@ public class LMSAccessTokenManager implements AccessTokenManager {
 	private String accessToken;
 	private Date tokenExpiresIn;
 
-	public LMSAccessTokenManager() {
-		this.tokenGenerator = AccessTokenGeneratorFactory.INSTANCE.createLMSAccessTokenGenerator();
+	public LMSAccessTokenManager(String userId) {
+		this.tokenGenerator = AccessTokenGeneratorFactory.INSTANCE.createLMSAccessTokenGenerator(userId);
 		this.tokenExpiresIn = new Date();
 	}
 

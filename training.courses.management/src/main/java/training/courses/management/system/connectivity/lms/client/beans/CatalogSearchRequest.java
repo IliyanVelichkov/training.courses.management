@@ -1,9 +1,13 @@
 package training.courses.management.system.connectivity.lms.client.beans;
 
+import com.google.gson.annotations.Expose;
+
 public class CatalogSearchRequest {
 
+	@Expose
 	private String searchPhrase;
 
+	@Expose
 	private String courseCategory;
 
 	public CatalogSearchRequest() {

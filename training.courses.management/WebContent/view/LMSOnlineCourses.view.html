@@ -1,0 +1,34 @@
+<template data-controller-name="training.courses.management.view.LMSOnlineCourses">
+	<div data-sap-ui-type="sap.ui.table.Table" id="coursesTable" data-selection-mode="Single" data-rows="{courses>/}" data-editable="false"
+		data-row-selection-change="onRowChange" data-visible-row-count="20" data-title="Courses {path:'courses>/', formatter:'training.courses.management.util.Helper.formatCount'}">
+		<div data-sap-ui-aggregation="columns">
+			<div data-sap-ui-type="sap.ui.table.Column" data-sort-property="title" data-filter-property="title">
+				<div data-sap-ui-aggregation="label">
+					<div data-sap-ui-type="sap.ui.commons.Label" data-text="Title"></div>
+				</div>
+				<div data-sap-ui-aggregation="template">
+					<div data-sap-ui-type="sap.ui.commons.TextField" data-value="{courses>title}" data-editable="false"  data-tooltip="{courses>title}"></div>
+				</div>
+			</div>
+			<div data-sap-ui-type="sap.ui.table.Column" data-sort-property="description" data-filter-property="description">
+				<div data-sap-ui-aggregation="label">
+					<div data-sap-ui-type="sap.ui.commons.Label" data-text="Description"></div>
+				</div>
+				<div data-sap-ui-aggregation="template">
+					<div data-sap-ui-type="sap.ui.commons.TextField" data-value="{courses>description}" data-editable="false" data-tooltip="{courses>description}"></div>
+				</div>
+			</div>
+			<div data-sap-ui-type="sap.ui.table.Column" data-sort-property="componentTypeID" data-filter-property="componentTypeID">
+				<div data-sap-ui-aggregation="label">
+					<div data-sap-ui-type="sap.ui.commons.Label" data-text="Type"></div>
+				</div>
+				<div data-sap-ui-aggregation="template">
+					<div data-sap-ui-type="sap.ui.commons.TextField" data-value="{courses>componentTypeID}" data-editable="false" data-tooltip="{courses>componentTypeID}"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div data-sap-ui-type="sap.ui.layout.HorizontalLayout" class="buttonContainer">
+		<div data-sap-ui-type="sap.ui.commons.Button" data-text="Add to learning plan" data-press="onAddCourse" class="courseButton" data-enabled="false" id="addToLearningPlanBtn" data-icon="sap-icon://add"></div>
+	</div>
+</template>

@@ -8,8 +8,8 @@ import training.courses.management.system.connectivity.oauth.AccessTokenManagerF
 public enum ConnectorFactory {
 	INSTANCE;
 
-	public Connector createLMSConnector() {
-		AccessTokenManager accessTokenManager = AccessTokenManagerFactory.INSTANCE.createLMSAccessTokenManager();
+	public Connector createLMSConnector(String userId) {
+		AccessTokenManager accessTokenManager = AccessTokenManagerFactory.INSTANCE.createLMSAccessTokenManager(userId);
 		return new LMSConnector(accessTokenManager);
 	}
 

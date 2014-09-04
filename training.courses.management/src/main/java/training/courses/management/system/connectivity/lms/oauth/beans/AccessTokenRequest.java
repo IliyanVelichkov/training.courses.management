@@ -26,6 +26,6 @@ public class AccessTokenRequest {
 	}
 
 	public String toJSON() {
-		return GsonFactory.INSTANCE.getGson().toJson(this);
+		return GsonFactory.INSTANCE.createGson().toJson(this);
 	}
 }

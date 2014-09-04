@@ -74,7 +74,7 @@ public class LMSV1AccessTokenGenerator implements AccessTokenGenerator {
 
 		try {
 			String respStr = EntityUtils.toString(entity);
-			AccessTokenResponse response = GsonFactory.INSTANCE.getGson().fromJson(respStr, AccessTokenResponse.class);
+			AccessTokenResponse response = GsonFactory.INSTANCE.createGson().fromJson(respStr, AccessTokenResponse.class);
 			LOGGER.info("Obtained access token response: " + response.toString()); //$NON-NLS-1$
 			convertExpiresInToMilliseconds(response);
 			return response;

@@ -85,4 +85,8 @@ training.courses.management.util.Helper = {
 		return value == null || value == undefined ? true : !value.trim();
 	},
 
+	formatCount : function(aItems) {
+		return aItems && aItems.length ? "(" + aItems.length + ")" : "";
+	},
+
 };

@@ -19,7 +19,7 @@ public enum AccessTokenGeneratorFactory {
 		this.passKeeper = PasswordsKeeperFactory.INSTANCE.getPasswordsKeeper();
 	}
 
-	public AccessTokenGenerator createLMSAccessTokenGenerator() {
+	public AccessTokenGenerator createLMSAccessTokenGenerator(String userId) {
 		URI lmsURI;
 		String lmsURIPropery = passKeeper.getPassword(PasswordAlias.LMS_URL.getName());
 		try {
@@ -28,11 +28,10 @@ public enum AccessTokenGeneratorFactory {
 			String errMsg = String.format("Invali value [%s] for property [%s]", PasswordAlias.LMS_URL.getName(), lmsURIPropery); //$NON-NLS-1$
 			throw new IllegalStateException(errMsg, ex);
 		}
-		return new LMSV1AccessTokenGenerator(lmsURI, getLMSCredentials());
+		return new LMSV1AccessTokenGenerator(lmsURI, getLMSCredentials(userId));
 	}
 
-	private LMSOAuthCredentials getLMSCredentials() {
-		String userId = passKeeper.getPassword(PasswordAlias.LMS_USER_ID.getName());
+	private LMSOAuthCredentials getLMSCredentials(String userId) {
 		String companyId = passKeeper.getPassword(PasswordAlias.LMS_COMPANY_ID.getName());
 		LMSUserType userType = LMSUserType.ADMIN;
 		String clientID = passKeeper.getPassword(PasswordAlias.LMS_CLIENT_ID.getName());

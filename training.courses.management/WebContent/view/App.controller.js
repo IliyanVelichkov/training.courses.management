@@ -1,6 +1,7 @@
 sap.ui.core.mvc.Controller.extend("training.courses.management.view.App", {
 
 	USER_ROLE_SERVICE_PATH : "rest/api/v1/user/isUserInRole",
+	USERNAME_SERVICE_PATH : "rest/api/v1/user",
 
 	currentView : undefined,
 
@@ -20,6 +21,8 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.App", {
 		var navItem = this.byId("shellId").getWorksetItems()[0];
 		var shortName = navItem.getBindingContext("nav").getProperty("shortViewName");
 		this.showView(shortName);
+
+		this._loadUsernameHeader();
 	},
 
 	_filterAllowedNavItems : function(navItems) {
@@ -35,6 +38,23 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.App", {
 		return jQuery.sap.syncGetJSON(this.USER_ROLE_SERVICE_PATH, {
 			"role" : role
 		}).data;
+	},
+
+	_loadUsernameHeader : function() {
+		var username = this._getUsername();
+		this.byId("usernameHeader").setText(username);
+	},
+
+	_getUsername : function(role) {
+		var userName = null;
+		jQuery.ajax({
+			url : this.USERNAME_SERVICE_PATH,
+			success : function(result) {
+				userName = result;
+			},
+			async : false
+		});
+		return userName;
 	},
 
 	onAfterRendering : function() {

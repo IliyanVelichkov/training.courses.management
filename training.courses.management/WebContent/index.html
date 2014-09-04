@@ -22,6 +22,9 @@
 		jQuery.sap.registerModulePath("training.courses.management", "/");
 		
 		jQuery.sap.require("training.courses.management.util.Helper");
+		jQuery.sap.require("training.courses.management.util.ContextUtil");
+		jQuery.sap.require("training.courses.management.util.CoursesUtil");
+
 		var i18nModel = new sap.ui.model.resource.ResourceModel({
 			bundleUrl : [jQuery.sap.getModulePath("training.courses.management"), "i18n/messageBundle.properties"].join("/")
 		});

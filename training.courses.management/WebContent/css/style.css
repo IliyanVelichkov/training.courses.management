@@ -76,11 +76,11 @@ div[id$=formContainer-content]>div:first-child {
 	display: none;
 }
 
-#CoursesId .sapUiHLayout{
+#ExternalCoursesId .sapUiHLayout{
 	margin: 0.5em 0 2em 0;
 }
 
-#CoursesId .sapUiHLayout > .sapUiHLayoutChildWrapper{
+#ExternalCoursesId .sapUiHLayout > .sapUiHLayoutChildWrapper{
 	margin-right: 1.5em;
 }
 
@@ -90,4 +90,8 @@ div[id$=formContainer-content]>div:first-child {
 
 .searchLabelStyle{
 	margin-right : 0.4em !important;
+}
+
+#LMSOnlineCoursesId{
+	margin-top: 1rem;
 }

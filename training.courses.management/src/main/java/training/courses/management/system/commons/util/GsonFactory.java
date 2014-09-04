@@ -9,17 +9,21 @@ public enum GsonFactory {
 
 	INSTANCE;
 
-	private final Gson gson;
+	public Gson createGson() {
+		GsonBuilder gsonBuilder = createSimpleBuilder();
+		return gsonBuilder.create();
+	}
 
-	private GsonFactory() {
+	public Gson createExclusiveGson() {
+		GsonBuilder gsonBuilder = createSimpleBuilder();
+		gsonBuilder.excludeFieldsWithoutExposeAnnotation();
+		return gsonBuilder.create();
+	}
+
+	private GsonBuilder createSimpleBuilder() {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Date.class, new DateTimeAdapter());
 		gsonBuilder.setPrettyPrinting();
-		this.gson = gsonBuilder.create();
+		return gsonBuilder;
 	}
-
-	public Gson getGson() {
-		return this.gson;
-	}
-
 }
