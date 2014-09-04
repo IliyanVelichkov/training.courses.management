@@ -109,10 +109,6 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.CourseProvid
 		var liveValue = evnt.getParameter("liveValue");
 		var existingProviderItem = this._getExistingProviderItem(liveValue);
 		if (existingProviderItem) {
-			// this.CONTROLS.courseProviderNameCombo.fireChange({
-			// "newValue" : liveValue,
-			// "selectedItem" : existingProviderItem
-			// });
 			this._enableDeleteBtn(true);
 		} else {
 			this._enableDeleteBtn(false);

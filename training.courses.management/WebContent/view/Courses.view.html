@@ -10,14 +10,15 @@
 				</div>
 				<div data-sap-ui-type="sap.ui.layout.HorizontalLayout" id="courseProviderLayout" data-visible="true">
 					<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>selectCourseProviderNameLbl}" data-tooltip="{i18n>selectCourseProviderNameTooltip}"></div>
-					<div data-sap-ui-type="sap.ui.commons.ComboBox" id="courseProviderNameCombo" data-width="35em" data-tooltip="{i18n>courseProviderNameComboTooltip}" data-enabled="true"
+					<div data-sap-ui-type="sap.ui.commons.ComboBox" id="courseProviderNameCombo" data-width="25em" data-tooltip="{i18n>courseProviderNameComboTooltip}" data-enabled="true"
 						data-items="{courseProviders>/}" data-change="onCourseProviderSelect">
 						<div data-sap-ui-aggregation="items">
 								<div data-sap-ui-type="sap.ui.core.ListItem" data-key="{courseProviders>name}" data-text="{courseProviders>name}"></div>
 						</div>
 					</div>
 					<div data-sap-ui-type="sap.ui.commons.Label" data-text="{i18n>urlLabel}" data-tooltip="{i18n>urlLabel}"></div>
-					<div data-sap-ui-type="sap.ui.commons.TextField" id="providerUrlTextField" data-width="22em" data-editable="true" data-enabled="true"></div>
+					<div data-sap-ui-type="sap.ui.commons.TextField" id="providerUrlTextField" data-width="22em" data-enabled="false" data-editable="false"></div>
+					<div data-sap-ui-type="sap.ui.commons.Button" data-text="Open" data-press="onOpenProvider" class="courseButton" data-enabled="false" id="providerOpenBtn" data-icon="sap-icon://show"></div>
 				</div>
 				<div data-sap-ui-type="sap.ui.table.Table" id="coursesTable" data-selection-mode="Single" data-rows="{courses>/}" data-editable="false"
 					data-row-selection-change="onRowChange" data-visible-row-count="20" data-title="Courses {path:'courses>/', formatter:'.formatCount'}">
@@ -49,7 +50,7 @@
 					</div>
 				</div>
 					<div data-sap-ui-type="sap.ui.layout.HorizontalLayout" class="buttonContainer">
-					<div data-sap-ui-type="sap.ui.commons.Button" data-text="Show" data-press="onShowCourse" class="courseButton" data-enabled="false" id="courseOpen" data-icon="sap-icon://show"></div>
+					<div data-sap-ui-type="sap.ui.commons.Button" data-text="Open" data-press="onShowCourse" class="courseButton" data-enabled="false" id="courseOpen" data-icon="sap-icon://show"></div>
 				</div>
 			</div>
 		</div>
