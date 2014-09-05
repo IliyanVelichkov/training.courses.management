@@ -21,7 +21,7 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
-import org.apache.http.params.CoreConnectionPNames;
+import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,9 @@ public abstract class HttpConnector implements Connector {
 
 	private HttpClient createClient() {
 		HttpClient client = new DefaultHttpClient();
-		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 15000);
+		HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
+		HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
+
 		return client;
 	}
 

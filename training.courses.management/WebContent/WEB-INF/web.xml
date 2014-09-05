@@ -84,6 +84,10 @@
     <res-ref-name>PasswordStorage</res-ref-name>
     <res-type>com.sap.cloud.security.password.PasswordStorage</res-type>
   </resource-ref>
+  <resource-ref>
+		<res-ref-name>KeyStoreService</res-ref-name>
+		<res-type>com.sap.cloud.crypto.keystore.api.KeyStoreService</res-type>
+  </resource-ref>
   <login-config>
     <auth-method>FORM</auth-method>
   </login-config>
