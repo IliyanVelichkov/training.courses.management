@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
@@ -18,6 +19,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
@@ -48,8 +50,10 @@ public abstract class HttpConnector implements Connector {
 
 	private HttpClient createClient() {
 		HttpClient client = new DefaultHttpClient();
-		HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-		HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
+		HttpConnectionParams.setConnectionTimeout(client.getParams(), 60000);
+		HttpConnectionParams.setSoTimeout(client.getParams(), 60000);
+		HttpHost proxy = new HttpHost("proxy", 8080);
+		client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
 
 		return client;
 	}
