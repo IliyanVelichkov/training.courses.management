@@ -18,8 +18,7 @@ public enum PasswordsKeeperFactory {
 
 	private PasswordsKeeper createaAppropriatePassKeeper() {
 		boolean isCloudScenario = null != System.getenv(HC_HOST_ENV_PROPERTY);
-		// TODO
-		if (false) {
+		if (isCloudScenario) {
 			try {
 				PasswordsKeeper passKeeper = CloudPasswordsKeeper.getInstance();
 				logger.info("Will be used cloud password keeper."); //$NON-NLS-1$
