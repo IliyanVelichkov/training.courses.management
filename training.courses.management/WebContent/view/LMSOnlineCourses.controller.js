@@ -127,6 +127,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.LMSOnlineCou
 	},
 
 	_addCourseToLearningPlan : function(course) {
+		this._setBusy(true);
 		var successFunc = jQuery.proxy(function(oResponseData) {
 			sap.ui.commons.MessageBox.alert("successfulAddingCourseToLearningPlan".localize(), null, "operationSuccess"
 					.localize());
