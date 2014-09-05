@@ -125,7 +125,7 @@ public class CourseProviderService extends BaseService {
 		try {
 			return buildOkResponse(client.searchCourses(URLEncoder.encode(searchPhrase, "UTF-8")));
 		} catch (ServiceException ex) {
-			if (ex.getResponseCode() == HttpServletResponse.SC_NOT_FOUND) {
+			if (ex.getResponseCode() != null && ex.getResponseCode() == HttpServletResponse.SC_NOT_FOUND) {
 				return buildBadRequestResponse("Missing search result"); //$NON-NLS-1$
 			}
 			return buildErrResponse("Course provider connection error.", ex); //$NON-NLS-1$

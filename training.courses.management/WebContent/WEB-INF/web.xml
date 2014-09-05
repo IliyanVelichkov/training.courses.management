@@ -81,8 +81,8 @@
     <res-type>com.sap.core.connectivity.api.http.HttpDestination</res-type>
   </resource-ref>
   <resource-ref>
-	  <res-ref-name>PasswordStorage</res-ref-name>
-	  <res-type>com.sap.cloud.security.password.PasswordStorage</res-type>
+    <res-ref-name>PasswordStorage</res-ref-name>
+    <res-type>com.sap.cloud.security.password.PasswordStorage</res-type>
   </resource-ref>
   <login-config>
     <auth-method>FORM</auth-method>
