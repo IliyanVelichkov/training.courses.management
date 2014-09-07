@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<web-app xmlns:xsi="http:/www.w3.org/2001/XMLSchema-instance" xmlns="http:/java.sun.com/xml/ns/javaee" xmlns:web="http:/java.sun.com/xml/ns/javaee" xsi:schemaLocation="http:/java.sun.com/xml/ns/javaee http:/java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>training.courses.management.system</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -103,11 +103,54 @@
   </security-constraint>
   <security-constraint>
     <web-resource-collection>
+      <web-resource-name>Admin area</web-resource-name>
+      <http-method>POST</http-method>
+      <http-method>PUT</http-method>
+      <http-method>DELETE</http-method>
+      <url-pattern>/rest/api/v1/providers</url-pattern>
+      <url-pattern>/rest/api/v1/providers/*</url-pattern>
+      <url-pattern>/rest/api/v1/contexts</url-pattern>
+      <url-pattern>/rest/api/v1/contexts/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Administrator</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Open area</web-resource-name>
+      <http-method>GET</http-method>
+      <url-pattern>/rest/api/v1/LMS/*</url-pattern>
+      <url-pattern>/rest/api/v1/courses/*</url-pattern>
+      <url-pattern>/rest/api/v1/user</url-pattern>
+      <url-pattern>/rest/api/v1/user/*</url-pattern>
+      <url-pattern>/rest/api/v1/providers</url-pattern>
+      <url-pattern>/rest/api/v1/providers/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Everyone</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <url-pattern>/resources</url-pattern>
+      <url-pattern>/resources/*</url-pattern>
+    </web-resource-collection>
+    <web-resource-collection>
       <web-resource-name>Logout</web-resource-name>
       <description>Logout</description>
       <url-pattern>/logout.jsp</url-pattern>
       <url-pattern>/logout</url-pattern>
     </web-resource-collection>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Static Content</web-resource-name>
+      <url-pattern>/img/*</url-pattern>
+    </web-resource-collection>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
   </security-constraint>
   <security-role>
     <description>Administrator</description>

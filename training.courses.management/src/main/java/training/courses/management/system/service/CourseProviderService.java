@@ -48,7 +48,7 @@ public class CourseProviderService extends BaseService {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getCourseProvider() {
+	public Response getCourseProviders() {
 		List<CoursesProvider> courseProviders = courseProviderDAO.getAll();
 		return buildOkResponse(courseProviders);
 	}
