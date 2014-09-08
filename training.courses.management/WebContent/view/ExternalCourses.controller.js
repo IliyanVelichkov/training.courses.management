@@ -27,9 +27,9 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.ExternalCour
 	},
 
 	_subscribeForCustomEvents : function() {
-		sap.ui.getCore().getEventBus().subscribe("getFinished", "finished", function() {
-			this._setBusy(false);
-		}, this);
+ sap.ui.getCore().getEventBus().subscribe("getFinished", "finished", function() {
+		 this._setBusy(false);
+		 }, this);
 	},
 
 	_attachCustomEvents : function() {
@@ -172,6 +172,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.ExternalCour
 			}
 		}
 		return courses;
+		
 	},
 
 	_searchCourses : function(providerName, oKeyword) {
@@ -244,8 +245,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.ExternalCour
 	},
 	
 	_setBusy : function(bValue) {
+		this.getView().setBusyIndicatorDelay(1);
 		this.getView().setBusy(bValue);
-		this.getView().setBusyIndicatorDelay(500);
 	}
-
 });

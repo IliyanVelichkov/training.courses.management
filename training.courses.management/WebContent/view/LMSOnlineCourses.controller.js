@@ -55,8 +55,8 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.LMSOnlineCou
 	},
 
 	_setBusy : function(bValue) {
+		this.getView().setBusyIndicatorDelay(1);
 		this.getView().setBusy(bValue);
-		this.getView().setBusyIndicatorDelay(500);
 	},
 
 	refresh : function(context) {
@@ -96,8 +96,7 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.LMSOnlineCou
 
 		var failFunc = jQuery.proxy(function(oResponseData) {
 			if (oResponseData.status == 400) {
-				sap.ui.commons.MessageBox.alert("Could not find courses with keyword " + oKeyword.name, null, "operationFailed"
-						.localize());
+				console.log("Could not find courses with keyword " + oKeyword.name);
 			} else {
 				sap.ui.commons.MessageBox.alert("Failed to get courses with keyword " + oKeyword.name + ".", null,
 						"operationFailed".localize());

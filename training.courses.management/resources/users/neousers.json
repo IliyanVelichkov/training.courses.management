@@ -1,0 +1,44 @@
+{
+  "Users": [
+    {
+      "UID": "admin",
+      "Password": "{SSHA}WXBdGAS+2CrkoQkR3+b4NJt+NBBAr9CjBYU\u003d",
+      "Roles": [
+        "Administrator"
+      ],
+      "Attributes": [
+        {
+          "attributeName": "firstname",
+          "attributeValue": ""
+        },
+        {
+          "attributeName": "lastname",
+          "attributeValue": ""
+        },
+        {
+          "attributeName": "email",
+          "attributeValue": "admin@sap.com"
+        }
+      ]
+    },
+    {
+      "UID": "cgrant1",
+      "Password": "{SSHA}QQNCe9QPrLLk8tKTFfFdOODm8/6vjPvKhbI\u003d",
+      "Roles": [],
+      "Attributes": [
+        {
+          "attributeName": "firstname",
+          "attributeValue": ""
+        },
+        {
+          "attributeName": "lastname",
+          "attributeValue": ""
+        },
+        {
+          "attributeName": "email",
+          "attributeValue": ""
+        }
+      ]
+    }
+  ]
+}

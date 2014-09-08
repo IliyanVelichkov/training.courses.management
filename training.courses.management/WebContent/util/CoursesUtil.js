@@ -10,6 +10,7 @@ training.courses.management.util.CoursesUtil = {
 			var courseTitle = courses[idx].title;
 			if (aTitles.indexOf(courseTitle) != -1 || training.courses.management.util.Helper.isInvalidString(courseTitle)) {
 				courses.splice(idx, 1);
+				idx--;
 				continue;
 			}
 			aTitles.push(courseTitle);

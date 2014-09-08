@@ -67,6 +67,6 @@ public class LMSService extends BaseService {
 	}
 
 	private LMSClient getClient() {
-		return LMSClientProvider.INSTANCE.getLMSManager(request.getRemoteUser());
+		return LMSClientProvider.INSTANCE.getClient(request.getRemoteUser());
 	}
 }

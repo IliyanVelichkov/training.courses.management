@@ -1,32 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
 	<entity>
-		<entity-name>training.courses.management.system.persistence.model.CoursesProvider</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>146</entity-height>
-		<entity-X-Coordinate>510</entity-X-Coordinate>
-		<entity-Y-Coordinate>240</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
 		<entity-name>training.courses.management.system.persistence.model.Keyword</entity-name>
-		<entity-width>120</entity-width>
+		<entity-width>175</entity-width>
 		<entity-height>70</entity-height>
-		<entity-X-Coordinate>510</entity-X-Coordinate>
-		<entity-Y-Coordinate>89</entity-Y-Coordinate>
+		<entity-X-Coordinate>462</entity-X-Coordinate>
+		<entity-Y-Coordinate>79</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
 	</entity>
 
 	<entity>
-		<entity-name>training.courses.management.system.persistence.model.SearchResultParserCfg</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>188</entity-height>
-		<entity-X-Coordinate>80</entity-X-Coordinate>
-		<entity-Y-Coordinate>240</entity-Y-Coordinate>
+		<entity-name>training.courses.management.system.persistence.model.CoursesProvider</entity-name>
+		<entity-width>161</entity-width>
+		<entity-height>166</entity-height>
+		<entity-X-Coordinate>130</entity-X-Coordinate>
+		<entity-Y-Coordinate>251</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -34,10 +23,21 @@
 
 	<entity>
 		<entity-name>training.courses.management.system.persistence.model.Context</entity-name>
-		<entity-width>120</entity-width>
+		<entity-width>161</entity-width>
 		<entity-height>108</entity-height>
-		<entity-X-Coordinate>80</entity-X-Coordinate>
-		<entity-Y-Coordinate>90</entity-Y-Coordinate>
+		<entity-X-Coordinate>130</entity-X-Coordinate>
+		<entity-Y-Coordinate>60</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>training.courses.management.system.persistence.model.SearchResultParserCfg</entity-name>
+		<entity-width>180</entity-width>
+		<entity-height>188</entity-height>
+		<entity-X-Coordinate>460</entity-X-Coordinate>
+		<entity-Y-Coordinate>240</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
