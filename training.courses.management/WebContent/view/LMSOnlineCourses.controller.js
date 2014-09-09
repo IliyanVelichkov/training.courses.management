@@ -23,6 +23,9 @@ sap.ui.core.mvc.Controller.extend("training.courses.management.view.LMSOnlineCou
 		sap.ui.getCore().getEventBus().subscribe("getFinished", "finished", function() {
 			this._setBusy(false);
 		}, this);
+		sap.ui.getCore().getEventBus().subscribe("postFinished", "finished", function() {
+			this._setBusy(false);
+		}, this);
 	},
 
 	onAfterRendering : function() {
