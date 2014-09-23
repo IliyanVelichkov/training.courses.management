@@ -3,16 +3,11 @@ package training.courses.management.system.persistence.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import training.courses.management.system.persistence.manager.EntityManagerProvider;
 import training.courses.management.system.persistence.model.Context;
 import training.courses.management.system.persistence.model.Keyword;
 
 public class ContextDAO extends BasicDAO<Context> {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ContextDAO.class);
 
 	public ContextDAO(EntityManagerProvider emProvider) {
 		super(emProvider);

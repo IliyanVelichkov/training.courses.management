@@ -9,28 +9,15 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
-import javax.persistence.Query;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import training.courses.management.system.persistence.manager.EntityManagerProvider;
 
 public class BasicDAO<T> {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-	protected EntityManagerProvider emProvider;
+	private EntityManagerProvider emProvider;
 
 	public BasicDAO(EntityManagerProvider emProvider) {
 		this.emProvider = emProvider;
-	}
-
-	public void refresh(T object) {
-		final EntityManager em = emProvider.get();
-		em.refresh(object);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,28 +46,6 @@ public class BasicDAO<T> {
 
 		em.getTransaction().commit();
 		return entity;
-	}
-
-	public T getById(long id) {
-		final EntityManager em = emProvider.get();
-		return getById(id, em);
-	}
-
-	@SuppressWarnings("unchecked")
-	private T getById(long id, EntityManager em) {
-		T t = null;
-
-		try {
-			Query query = em.createQuery("select u from " + getTableName() + " u where u.id = :id"); //$NON-NLS-1$ //$NON-NLS-2$
-			query.setParameter("id", id); //$NON-NLS-1$
-			t = (T) query.getSingleResult();
-		} catch (NoResultException e) {
-			logger.error("Could not retrieve entity {} from table {}.", id, getTableName()); //$NON-NLS-1$
-		} catch (NonUniqueResultException e) {
-			logger.error("More than one entity {} from table {}.", id, getTableName()); //$NON-NLS-1$
-		}
-
-		return t;
 	}
 
 	private Type getActualType() {
